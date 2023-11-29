@@ -13,13 +13,13 @@ class FilterValue:
     url_name: str
 
 
-class TabsSpider(scrapy.Spider):
+class TabSpider(scrapy.Spider):
     name = "ugscraper"
     allowed_domains = ["ultimate-guitar.com"]
     start_urls = ["https://www.ultimate-guitar.com/explore?type[]=Chords"]
 
     def __init__(self, *args, **kwargs):
-        super(TabsSpider, self).__init__(*args, **kwargs)
+        super(TabSpider, self).__init__(*args, **kwargs)
         self.logger.info("Initializing the spider.")
         self.filter_cache = RedisFilterRepository(host="redis", port=6379)
 

@@ -4,7 +4,7 @@ import tempfile
 import os
 
 from ugscraper.ugscraper.pipelines import SplitFilePipeline
-from ugscraper.ugscraper.spiders.tab_spider import TabsSpider
+from ugscraper.ugscraper.spiders.tab_spider import TabSpider
 
 
 def test_split_item_pipelines(tmpdir, mock_spider):
