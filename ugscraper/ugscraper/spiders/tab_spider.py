@@ -1,5 +1,5 @@
-from ugscraper.redis.redis_helper import RedisFilterRepository
-from ugscraper.json_logger import JsonLogFormatter
+from ugscraper.ugscraper.redis.redis_helper import RedisFilterRepository
+from ugscraper.ugscraper.json_logger import JsonLogFormatter
 from dataclasses import dataclass
 import logging, scrapy, json, random
 from typing import Tuple, Set, List
