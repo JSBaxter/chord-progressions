@@ -6,24 +6,10 @@ import os
 from ugscraper.ugscraper.pipelines import SplitFilePipeline
 from ugscraper.ugscraper.spiders.tab_spider import TabsSpider
 
-from scrapy.spiders import Spider
 
-
-class MockSpider(Spider):
-    name = "mock_spider"
-    allowed_domains = ["example.com"]
-    start_urls = ["https://www.example.com"]
-
-    def parse(self, response):
-        yield {
-            "title": "Example",
-            "url": "https://www.example.com",
-        }
-
-
-def test_split_item_pipelines(tmpdir):
+def test_split_item_pipelines(tmpdir, mock_spider):
     pipeline = SplitFilePipeline(5, tmpdir)
-    spider = MockSpider()
+    spider = mock_spider
     pipeline.open_spider(spider)
     items = [
         {

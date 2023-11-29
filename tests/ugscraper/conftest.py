@@ -7,8 +7,26 @@ from ugscraper.ugscraper.spiders.tab_spider import FilterValue
 import pickle
 import requests
 from scrapy.http import TextResponse
+from scrapy.spiders import Spider
 import scrapy
 import tempfile
+
+
+class MockSpider(Spider):
+    name = "mock_spider"
+    allowed_domains = ["example.com"]
+    start_urls = ["https://www.example.com"]
+
+    def parse(self, response):
+        yield {
+            "title": "Example",
+            "url": "https://www.example.com",
+        }
+
+
+@pytest.fixture
+def mock_spider():
+    return MockSpider()
 
 
 @pytest.fixture
