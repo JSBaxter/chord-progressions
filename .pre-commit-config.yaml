@@ -10,6 +10,6 @@ repos:
     hooks:
     -   id: black
 -   repo: https://github.com/kynan/nbstripout
-    rev: 0.4.0  # Use the ref you want to point at
+    rev: 0.4.0
     hooks:
     -   id: nbstripout
