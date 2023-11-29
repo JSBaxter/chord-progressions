@@ -3,7 +3,7 @@ import pytest
 import json
 from dataclasses import dataclass
 from typing import List
-from ugscraper.ugscraper.spiders.tab_spider import FilterValue
+from ugscraper.ugscraper.spiders.tab_spider import FilterValue, TabSpider
 import pickle
 import requests
 from scrapy.http import TextResponse
@@ -30,25 +30,25 @@ def mock_spider():
 
 
 @pytest.fixture
+def tab_spider():
+    return TabSpider()
+
+
+@pytest.fixture
 def tmpdir():
     with tempfile.TemporaryDirectory() as tmpdirname:
         yield tmpdirname
 
 
 @pytest.fixture
-def explore_response(
-    url, pickle_file_path="tests/ugscraper/data/test_explore_response_20231129.pickle"
-):
-    """
-    Fetches the response from a URL and pickles it to a file.
-
-    :param url: URL to fetch.
-    :param pickle_file_path: File path to store the pickled response.
-    """
+def explore_response():
+    pickle_file_path = "tests/ugscraper/data/test_explore_response_20231129.pickle"
     with open(pickle_file_path, "rb") as f:
         response = pickle.load(f)
 
-    scrapy_response = TextResponse(url=url, body=response.content, encoding="utf-8")
+    scrapy_response = TextResponse(
+        url=response.url, body=response.content, encoding="utf-8"
+    )
 
     return scrapy_response
 
